@@ -1,0 +1,17 @@
+syntax = "proto3";
+
+// The hello service definition.
+service Sample {
+  // Sends a greeting
+  rpc SayHello (SampleRequest) returns (SampleResponse) {}
+}
+
+// The request message containing the user's name.
+message SampleRequest {
+  string name = 1;
+}
+
+// The response message containing the greetings
+message SampleResponse {
+  string message = 1;
+}
