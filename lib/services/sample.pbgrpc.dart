@@ -19,24 +19,25 @@ import 'sample.pb.dart' as $0;
 
 export 'sample.pb.dart';
 
+@$pb.GrpcServiceName('Sample')
 class SampleClient extends $grpc.Client {
-  static final _$sayHello =
-      $grpc.ClientMethod<$0.SampleRequest, $0.SampleResponse>(
-          '/Sample/SayHello',
-          ($0.SampleRequest value) => value.writeToBuffer(),
-          ($core.List<$core.int> value) => $0.SampleResponse.fromBuffer(value));
+  static final _$sayHello = $grpc.ClientMethod<$0.SampleRequest, $0.SampleResponse>(
+      '/Sample/SayHello',
+      ($0.SampleRequest value) => value.writeToBuffer(),
+      ($core.List<$core.int> value) => $0.SampleResponse.fromBuffer(value));
 
   SampleClient($grpc.ClientChannel channel,
       {$grpc.CallOptions? options,
       $core.Iterable<$grpc.ClientInterceptor>? interceptors})
-      : super(channel, options: options, interceptors: interceptors);
+      : super(channel, options: options,
+        interceptors: interceptors);
 
-  $grpc.ResponseFuture<$0.SampleResponse> sayHello($0.SampleRequest request,
-      {$grpc.CallOptions? options}) {
+  $grpc.ResponseFuture<$0.SampleResponse> sayHello($0.SampleRequest request, {$grpc.CallOptions? options}) {
     return $createUnaryCall(_$sayHello, request, options: options);
   }
 }
 
+@$pb.GrpcServiceName('Sample')
 abstract class SampleServiceBase extends $grpc.Service {
   $core.String get $name => 'Sample';
 
@@ -50,11 +51,9 @@ abstract class SampleServiceBase extends $grpc.Service {
         ($0.SampleResponse value) => value.writeToBuffer()));
   }
 
-  $async.Future<$0.SampleResponse> sayHello_Pre(
-      $grpc.ServiceCall call, $async.Future<$0.SampleRequest> request) async {
+  $async.Future<$0.SampleResponse> sayHello_Pre($grpc.ServiceCall call, $async.Future<$0.SampleRequest> request) async {
     return sayHello(call, await request);
   }
 
-  $async.Future<$0.SampleResponse> sayHello(
-      $grpc.ServiceCall call, $0.SampleRequest request);
+  $async.Future<$0.SampleResponse> sayHello($grpc.ServiceCall call, $0.SampleRequest request);
 }

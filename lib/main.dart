@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:grpc/grpc.dart';
 import 'package:grpc_header_test/sample_service.dart';
 import 'package:grpc_header_test/services/sample.pb.dart';
 
@@ -54,15 +53,13 @@ class _TestPageState extends State<TestPage> {
     setState(() => loading = true);
     try {
       final sampleClient = SampleService.instance.sampleClient;
-      final helloRequest = SampleRequest(name: "Test");
-      final responseFuture = sampleClient.sayHello(helloRequest);
+      final testRequest = SampleRequest(name: "Test");
+      final responseFuture = sampleClient.sayHello(testRequest);
 
-      var header = responseFuture.headers;
+      var header = await responseFuture.headers;
       var helloResponse = await responseFuture;
 
       request = helloResponse.message;
-    } on GrpcError catch (e) {
-      request = e.toString();
     } catch (e) {
       request = e.toString();
     } finally {
